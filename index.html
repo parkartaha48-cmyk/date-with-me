@@ -183,6 +183,29 @@ noBtn.addEventListener("touchstart", function(event) {
   event.preventDefault();
   moveNoButton();
 }, { passive: false });
+  
+let step = 0;
+
+const steps = [...document.querySelectorAll(".step")];
+const dots = [...document.querySelectorAll(".dot")];
+
+const backBtn = document.getElementById("backBtn");
+const nextBtn = document.getElementById("nextBtn");
+const status = document.getElementById("formStatus");
+const activityInput = document.getElementById("activity");
+
+document.querySelectorAll("[data-activity]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("[data-activity]").forEach(b => {
+      b.classList.remove("selected");
+    });
+
+    btn.classList.add("selected");
+    activityInput.value = btn.dataset.activity;
+    status.textContent = "";
+  });
+});
+
 function renderStep(){steps.forEach((s,i)=>s.classList.toggle("hidden",i!==step));dots.forEach((d,i)=>d.classList.toggle("active",i<=step));backBtn.style.visibility=step===0?"hidden":"visible";nextBtn.textContent=step===3?"Send my letter 💌":"Next →";document.getElementById("stepLabel").textContent=`Page ${step+1} of 4`;if(step===3)fillSummary();}
 function validateCurrent(){
  const current=steps[step];
