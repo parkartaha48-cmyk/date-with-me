@@ -174,17 +174,16 @@ function moveNoButton() {
   const maxY = Math.max(0, window.innerHeight - buttonHeight - 10);
 
   noBtn.style.position = "fixed";
-  noBtn.style.left = Math.random() * maxX + "px";
-  noBtn.style.top = Math.random() * maxY + "px";
+  noBtn.style.left = (Math.random() * maxX) + "px";
+  noBtn.style.top = (Math.random() * maxY) + "px";
   noBtn.style.zIndex = "9999";
 }
-
 noBtn.addEventListener("pointerenter", moveNoButton);
 
 noBtn.addEventListener("touchstart", function(event) {
   event.preventDefault();
   moveNoButton();
-});
+}, { passive: false });
 
 document.getElementById("replayBtn").addEventListener("click", () => {
   resetForm();
