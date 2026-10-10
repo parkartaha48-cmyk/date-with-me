@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff7eb6">
+<meta name="description" content="A cute anime-inspired date invitation.">
+<title>A Little Question 💗</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:"Quicksand","Zen Maru Gothic",sans-serif}
+body{
+  overflow:hidden;
+  background:linear-gradient(135deg,#ffe7f1 0%,#fff6fb 45%,#e7f4ff 100%);
+  color:#4d3850;
+}
+.screen{
+  min-height:100vh; min-height:100svh; display:flex; align-items:center; justify-content:center;
+  padding:20px; position:relative; overflow:hidden;
+}
+.card{
+  width:min(92vw,520px); min-height:570px; padding:34px 24px 28px;
+  background:rgba(255,255,255,.76); border:2px solid rgba(255,255,255,.9);
+  border-radius:32px; box-shadow:0 20px 60px rgba(170,100,145,.18);
+  backdrop-filter:blur(14px); text-align:center; position:relative; z-index:2;
+}
+.mascot{
+  width:150px;height:150px;margin:0 auto 10px; position:relative;
+  animation:float 3s ease-in-out infinite;
+}
+.face{
+  position:absolute;inset:13px;border-radius:50%;
+  background:#ffe1cf;border:4px solid #6b5268;
+  box-shadow:inset 0 -7px 0 rgba(255,170,190,.18);
+}
+.hair{position:absolute;left:3px;top:0;width:144px;height:75px;background:#5b416f;border-radius:75px 75px 25px 25px;transform:rotate(-3deg)}
+.hair:after{content:"";position:absolute;right:7px;top:35px;width:38px;height:75px;background:#5b416f;border-radius:0 0 35px 35px;transform:rotate(-8deg)}
+.eye{position:absolute;top:72px;width:10px;height:16px;background:#513a52;border-radius:50%}
+.eye.l{left:43px}.eye.r{right:43px}
+.blush{position:absolute;top:94px;width:24px;height:10px;border-radius:50%;background:#ff9ebc;opacity:.7}
+.blush.l{left:23px}.blush.r{right:23px}
+.mouth{position:absolute;left:66px;top:99px;width:18px;height:9px;border-bottom:3px solid #9b5572;border-radius:0 0 15px 15px}
+.bow{position:absolute;left:52px;bottom:-2px;width:46px;height:28px}
+.bow:before,.bow:after{content:"";position:absolute;width:28px;height:23px;background:#ff75aa;border:3px solid #6b5268}
+.bow:before{left:0;border-radius:18px 5px 18px 12px;transform:rotate(12deg)}
+.bow:after{right:0;border-radius:5px 18px 12px 18px;transform:rotate(-12deg)}
+.bow i{position:absolute;z-index:2;left:17px;top:6px;width:13px;height:13px;border-radius:50%;background:#ff4f91;border:2px solid #6b5268}
+
+.kicker{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#c05b8d;margin-top:2px}
+h1{font-family:"Zen Maru Gothic",sans-serif;font-size:clamp(28px,7vw,42px);line-height:1.12;margin:10px 0 12px;color:#573c5c}
+.sub{font-size:16px;line-height:1.6;margin:0 auto;max-width:390px;color:#766176}
+.question{font-size:19px;font-weight:700;margin:22px 0 20px;color:#5a405f}
+.actions{position:relative;height:100px;margin:0 auto;width:min(100%,360px)}
+button{
+  border:0;font:inherit;font-weight:700;cursor:pointer;touch-action:manipulation;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+#yes{
+  position:absolute;left:18%;top:22px;transform:translateX(-50%);
+  padding:14px 30px;border-radius:999px;color:white;
+  background:linear-gradient(135deg,#ff5c9d,#ff87b9);
+  box-shadow:0 9px 22px rgba(255,92,157,.28);font-size:17px;z-index:3;
+}
+#yes:hover{transform:translateX(-50%) scale(1.05)}
+#no{
+  position:absolute;left:70%;top:22px;transform:translateX(-50%);
+  padding:12px 25px;border-radius:999px;color:#775c72;background:#fff;
+  border:2px solid #efdce8;box-shadow:0 7px 18px rgba(100,70,100,.10);
+  font-size:15px;z-index:4;
+}
+.hint{font-size:12px;color:#a28da0;margin-top:6px}
+.heart{position:absolute;font-size:24px;opacity:.6;animation:drift linear infinite;z-index:1}
+.h1{left:7%;top:12%;animation-duration:8s}.h2{right:8%;top:18%;animation-duration:10s}.h3{left:12%;bottom:15%;animation-duration:9s}.h4{right:13%;bottom:11%;animation-duration:7s}.h5{left:48%;top:4%;animation-duration:11s}
+.petal{position:absolute;width:9px;height:14px;background:#ffabc8;border-radius:100% 0 100% 0;opacity:.35;animation:fall 9s linear infinite}
+.success{display:none}
+.success.show{display:flex}
+.main.hide{display:none}
+.success .card{min-height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.big-heart{font-size:88px;line-height:1;animation:pulse 1.2s ease-in-out infinite}
+.success h2{font-family:"Zen Maru Gothic",sans-serif;font-size:38px;margin:12px 0 8px;color:#e84f91}
+.success p{font-size:17px;line-height:1.6;max-width:370px;margin:0;color:#70576e}
+.note{margin-top:20px;padding:13px 18px;border-radius:18px;background:#fff3f8;color:#8b607d;font-size:13px}
+.replay{margin-top:18px;padding:11px 22px;border-radius:999px;background:#fff;color:#a04b78;border:2px solid #f1d9e5}
+@keyframes float{50%{transform:translateY(-8px)}}
+@keyframes pulse{50%{transform:scale(1.13) rotate(-4deg)}}
+@keyframes drift{0%{transform:translateY(20px) rotate(0)}50%{transform:translateY(-25px) rotate(12deg)}100%{transform:translateY(20px) rotate(0)}}
+@keyframes fall{0%{transform:translateY(-30px) rotate(0)}100%{transform:translateY(110vh) rotate(360deg)}}
+@media(max-width:430px){
+ .card{padding:26px 17px 22px;min-height:545px;border-radius:27px}
+ .mascot{transform:scale(.88);margin-bottom:-2px}
+ .question{font-size:17px}
+ .actions{width:100%;height:115px}
+ #yes{left:28%} #no{left:72%}
+}
+</style>
+</head>
+<body>
+<div class="screen main" id="main">
+  <span class="heart h1">♡</span><span class="heart h2">♥</span><span class="heart h3">♡</span><span class="heart h4">♥</span><span class="heart h5">♡</span>
+  <span class="petal" style="left:18%;animation-delay:-2s"></span>
+  <span class="petal" style="left:35%;animation-delay:-6s"></span>
+  <span class="petal" style="left:68%;animation-delay:-4s"></span>
+  <span class="petal" style="left:84%;animation-delay:-8s"></span>
+  <div class="card">
+    <div class="mascot" aria-hidden="true">
+      <div class="hair"></div><div class="face"></div>
+      <div class="eye l"></div><div class="eye r"></div>
+      <div class="blush l"></div><div class="blush r"></div><div class="mouth"></div>
+      <div class="bow"><i></i></div>
+    </div>
+    <div class="kicker">A tiny question for you ✨</div>
+    <h1>Will you go on a date with me?</h1>
+    <p class="sub">I may have spent way too much time making this little website… but I think you're worth it. 💗</p>
+    <div class="question">So… what do you say?</div>
+    <div class="actions" id="actions">
+      <button id="yes">Yes 💕</button>
+      <button id="no" aria-label="No">No 😭</button>
+    </div>
+    <div class="hint">P.S. The buttons are a little shy.</div>
+  </div>
+</div>
+
+<div class="screen success" id="success">
+  <span class="heart h1">♥</span><span class="heart h2">♡</span><span class="heart h3">♥</span><span class="heart h4">♡</span>
+  <div class="card">
+    <div class="big-heart">💖</div>
+    <div class="kicker">Mission successful ✨</div>
+    <h2>Yayyyy! 🎀</h2>
+    <p>Okay, it's officially a date. Now I just have to figure out where we're going. 😳</p>
+    <div class="note">Screenshot this screen. I’m definitely keeping it. 📸</div>
+    <button class="replay" id="replay">Replay ↻</button>
+  </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const actions = document.getElementById("actions");
+const yesBtn = document.getElementById("yes");
+const main = document.getElementById("main");
+const success = document.getElementById("success");
+
+function moveNo() {
+  const box = actions.getBoundingClientRect();
+  const btn = noBtn.getBoundingClientRect();
+  const maxX = Math.max(8, box.width - btn.width - 8);
+  const maxY = Math.max(8, box.height - btn.height - 8);
+  const x = 8 + Math.random() * maxX;
+  const y = 8 + Math.random() * maxY;
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+  noBtn.style.transform = "none";
+  noBtn.textContent = ["No 😭","Are you sure? 🥺","Wait!","Not so fast 😭","Nope!","Try again 😂"][Math.floor(Math.random()*6)];
+}
+
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("pointerdown", (e) => { e.preventDefault(); moveNo(); });
+noBtn.addEventListener("touchstart", (e) => { e.preventDefault(); moveNo(); }, {passive:false});
+
+yesBtn.addEventListener("click", () => {
+  main.classList.add("hide");
+  success.classList.add("show");
+  document.body.style.overflow = "auto";
+  launchConfetti();
+});
+
+document.getElementById("replay").addEventListener("click", () => {
+  success.classList.remove("show");
+  main.classList.remove("hide");
+  document.body.style.overflow = "hidden";
+  noBtn.style.left = "";
+  noBtn.style.top = "";
+  noBtn.style.transform = "translateX(-50%)";
+  noBtn.textContent = "No 😭";
+});
+
+function launchConfetti(){
+  for(let i=0;i<32;i++){
+    const c=document.createElement("span");
+    c.textContent=["💗","💖","✨","🌸","💕"][Math.floor(Math.random()*5)];
+    c.style.position="fixed"; c.style.left=(Math.random()*100)+"vw"; c.style.top="-30px";
+    c.style.fontSize=(14+Math.random()*18)+"px"; c.style.zIndex=10; c.style.pointerEvents="none";
+    c.animate([
+      {transform:"translateY(0) rotate(0)",opacity:1},
+      {transform:`translateY(${90+Math.random()*80}vh) rotate(${180+Math.random()*360}deg)`,opacity:0}
+    ],{duration:1800+Math.random()*1800,easing:"cubic-bezier(.2,.7,.2,1)"}).onfinish=()=>c.remove();
+    document.body.appendChild(c);
+  }
+}
+</script>
+</body>
+</html>
