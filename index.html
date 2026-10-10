@@ -164,6 +164,7 @@ document.getElementById("openLetter").addEventListener("click",()=>go("sceneQues
 document.getElementById("yesBtn").addEventListener("click",()=>{go("sceneForm");animateHearts();});
 const noBtn = document.getElementById("noBtn");
   
+const noBtn = document.getElementById("noBtn");
 
 function moveNoButton() {
   const buttonWidth = noBtn.offsetWidth;
@@ -176,12 +177,15 @@ function moveNoButton() {
   noBtn.style.left = Math.random() * maxX + "px";
   noBtn.style.top = Math.random() * maxY + "px";
   noBtn.style.zIndex = "9999";
-  noBtn.addEventListener("pointerenter", moveNoButton);
+}
+
+noBtn.addEventListener("pointerenter", moveNoButton);
+
 noBtn.addEventListener("touchstart", function(event) {
   event.preventDefault();
   moveNoButton();
 });
-}
+
 document.getElementById("replayBtn").addEventListener("click", () => {
   resetForm();
   go("sceneIntro");
