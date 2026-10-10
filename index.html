@@ -164,29 +164,17 @@ document.getElementById("openLetter").addEventListener("click",()=>go("sceneQues
 document.getElementById("yesBtn").addEventListener("click",()=>{go("sceneForm");animateHearts();});
 const noBtn = document.getElementById("noBtn");
   
+
 function moveNoButton() {
-  const maxX = Math.max(10, window.innerWidth - noBtn.offsetWidth - 20);
-  const maxY = Math.max(10, window.innerHeight - noBtn.offsetHeight - 20);
+  const rect = noBtn.parentElement.getBoundingClientRect();
+  const maxX = Math.max(0, rect.width - noBtn.offsetWidth);
+  const maxY = Math.max(0, rect.height - noBtn.offsetHeight);
 
-  noBtn.style.position = "fixed";
-  noBtn.style.left = Math.max(10, Math.random() * maxX) + "px";
-  noBtn.style.top = Math.max(10, Math.random() * maxY) + "px";
-  noBtn.style.zIndex = "9999";
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random() * maxX + "px";
+  noBtn.style.top = Math.random() * maxY + "px";
+  noBtn.style.zIndex = "10";
 }
-
-noBtn.addEventListener("pointerenter", moveNoButton);
-noBtn.addEventListener("touchstart", function(event) {
-  event.preventDefault();
-  moveNoButton();
-});
-
-document.getElementById("restartNo").addEventListener("click", () => {
-  noBtn.style.position = "";
-  noBtn.style.left = "";
-  noBtn.style.top = "";
-  noBtn.style.zIndex = "";
-  go("sceneIntro");
-});
 
 document.getElementById("replayBtn").addEventListener("click", () => {
   resetForm();
