@@ -166,18 +166,6 @@ const noBtn = document.getElementById("noBtn");
   
 const noBtn = document.getElementById("noBtn");
 
-function moveNoButton() {
-  const buttonWidth = noBtn.offsetWidth;
-  const buttonHeight = noBtn.offsetHeight;
-
-  const maxX = Math.max(0, window.innerWidth - buttonWidth - 10);
-  const maxY = Math.max(0, window.innerHeight - buttonHeight - 10);
-
-  noBtn.style.position = "fixed";
-  noBtn.style.left = (Math.random() * maxX) + "px";
-  noBtn.style.top = (Math.random() * maxY) + "px";
-  noBtn.style.zIndex = "9999";
-}
 noBtn.addEventListener("pointerenter", moveNoButton);
 
 noBtn.addEventListener("touchstart", function(event) {
