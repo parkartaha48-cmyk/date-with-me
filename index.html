@@ -166,16 +166,17 @@ const noBtn = document.getElementById("noBtn");
   
 
 function moveNoButton() {
-  const rect = noBtn.parentElement.getBoundingClientRect();
-  const maxX = Math.max(0, rect.width - noBtn.offsetWidth);
-  const maxY = Math.max(0, rect.height - noBtn.offsetHeight);
+  const buttonWidth = noBtn.offsetWidth;
+  const buttonHeight = noBtn.offsetHeight;
 
-  noBtn.style.position = "absolute";
+  const maxX = Math.max(0, window.innerWidth - buttonWidth - 10);
+  const maxY = Math.max(0, window.innerHeight - buttonHeight - 10);
+
+  noBtn.style.position = "fixed";
   noBtn.style.left = Math.random() * maxX + "px";
   noBtn.style.top = Math.random() * maxY + "px";
-  noBtn.style.zIndex = "10";
+  noBtn.style.zIndex = "9999";
 }
-
 document.getElementById("replayBtn").addEventListener("click", () => {
   resetForm();
   go("sceneIntro");
