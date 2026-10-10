@@ -157,7 +157,7 @@ h1{font-family:"Patrick Hand",cursive;font-size:clamp(38px,9vw,58px)}h2{font-fam
  Deploy a Google Apps Script web app and paste its URL below.
  See SETUP.md included in the ZIP. Until connected, the form will not claim answers were saved.
 */
-const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzLgpPRS1nF_89zddj1SbXI4tIojXRnKIO5f_pyKZqqZRsXvl2LnfY_juHTv6tzfz5vaA/exec";
 const scenes = ["sceneIntro","sceneQuestion","sceneForm","sceneThanks","sceneNo"].map(id=>document.getElementById(id));
 function go(id){scenes.forEach(s=>s.classList.add("hidden"));document.getElementById(id).classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"});}
 document.getElementById("openLetter").addEventListener("click",()=>go("sceneQuestion"));
