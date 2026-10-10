@@ -176,6 +176,11 @@ function moveNoButton() {
   noBtn.style.left = Math.random() * maxX + "px";
   noBtn.style.top = Math.random() * maxY + "px";
   noBtn.style.zIndex = "9999";
+  noBtn.addEventListener("pointerenter", moveNoButton);
+noBtn.addEventListener("touchstart", function(event) {
+  event.preventDefault();
+  moveNoButton();
+});
 }
 document.getElementById("replayBtn").addEventListener("click", () => {
   resetForm();
